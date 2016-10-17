@@ -537,7 +537,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                 //复位当前page位置
                 UIButton *preMenuCell = [_menuDicM objectForKey:[NSString stringWithFormat:@"%d",_currentPage]];
                 preMenuCell.selected = NO;
-                _currentPage = currentPage;
                 
                 if (_currentPage == currentPage) {
                     //更新followLine位置
@@ -548,6 +547,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                         [self createVCToPageDicMAtIndex:currentPage];
                     }
                 }
+                _currentPage = currentPage;
                 
                 //更新选择框中的tag状态、更新menuCell状态
                 [self changeChooseTagButton:nil];

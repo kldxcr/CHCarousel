@@ -10,8 +10,10 @@
 #import "CHScrollMenuController.h"
 #import "CHTableViewController.h"
 #import "CHDataMarcos.h"
+#import "CHScrollRepeatView.h"
 
 @interface ViewController ()<CHScrollMenuDelegate>
+@property (nonatomic, strong) CHScrollRepeatView *repeatView;
 @property (nonatomic, strong) CHScrollMenuController *scrollMenuC;
 @property (nonatomic, strong) NSArray *menuTitleArray;
 @end
@@ -21,15 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+    //展示轮播图
     [self showRepeatScrollView];
     
-    //展示有彩蛋的多页面滚动试图
+    //展示有菜单的多页面滚动试图
 //    [self showScrollMenuController];
 }
 
 - (void)showRepeatScrollView {
-    
+    _repeatView = [[CHScrollRepeatView alloc] initWithFrame:CGRectMake(0, 0, CH_ScreenWidth, 200)];
+    [_repeatView setPageArray:@[@"image0", @"image1", @"image2", @"image3"]];
+    [self.view addSubview:_repeatView];
 }
 
 - (void)showScrollMenuController {
