@@ -10,10 +10,11 @@
 #import "CHScrollMenuController.h"
 #import "CHTableViewController.h"
 #import "CHDataMarcos.h"
-#import "CHScrollRepeatView.h"
+#import "SDCycleScrollView.h"
 
 @interface ViewController ()<CHScrollMenuDelegate>
-@property (nonatomic, strong) CHScrollRepeatView *repeatView;
+@property (nonatomic, strong) SDCycleScrollView *circelView;
+@property (nonatomic, strong) NSArray *circelArray;
 @property (nonatomic, strong) CHScrollMenuController *scrollMenuC;
 @property (nonatomic, strong) NSArray *menuTitleArray;
 @end
@@ -31,9 +32,22 @@
 }
 
 - (void)showRepeatScrollView {
-    _repeatView = [[CHScrollRepeatView alloc] initWithFrame:CGRectMake(0, 0, CH_ScreenWidth, 200)];
-    [_repeatView setPageArray:@[@"image0", @"image1", @"image2", @"image3"]];
-    [self.view addSubview:_repeatView];
+    _circelArray = @[@"image0", @"image1", @"image2", @"image3"];
+    NSMutableArray *imageArray = [NSMutableArray new];
+    for (NSString *imageName in _circelArray) {
+        NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"jpg"];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+        [imageArray addObject:image];
+    }
+    _circelView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, CH_ScreenWidth, 180) shouldInfiniteLoop:YES imageNamesGroup:nil];
+    _circelView.placeholderImage = [UIImage imageNamed:@"img_nodata"];
+    _circelView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _circelView.autoScrollTimeInterval = 2.0;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _circelView.localizationImageNamesGroup = imageArray;
+    });
+    [self.view addSubview:_circelView];
 }
 
 - (void)showScrollMenuController {
@@ -61,6 +75,22 @@
     tableVC.cellTitle = _menuTitleArray[index];
     return tableVC;
 }
+
+#pragma mark - CircleDelegate
+
+- (NSInteger)numberForViews {
+    return _circelArray.count;
+}
+
+- (UIView *)viewAtIndex:(NSInteger)index {
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:_circelArray[index] ofType:@"jpg"];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
+    return imageView;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
