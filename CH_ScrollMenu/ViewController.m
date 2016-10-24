@@ -12,7 +12,7 @@
 #import "CHDataMarcos.h"
 #import "SDCycleScrollView.h"
 
-@interface ViewController ()<CHScrollMenuDelegate>
+@interface ViewController ()<CHScrollMenuDelegate, SDCycleScrollViewDelegate>
 @property (nonatomic, strong) SDCycleScrollView *circelView;
 @property (nonatomic, strong) NSArray *circelArray;
 @property (nonatomic, strong) CHScrollMenuController *scrollMenuC;
@@ -32,21 +32,35 @@
 }
 
 - (void)showRepeatScrollView {
-    _circelArray = @[@"image0", @"image1", @"image2", @"image3"];
-    NSMutableArray *imageArray = [NSMutableArray new];
-    for (NSString *imageName in _circelArray) {
-        NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"jpg"];
-        UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-        [imageArray addObject:image];
-    }
+    //测试本地／测试网络数据
+    BOOL isTestWeb = YES;
+    
     _circelView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, CH_ScreenWidth, 180) shouldInfiniteLoop:YES imageNamesGroup:nil];
     _circelView.placeholderImage = [UIImage imageNamed:@"img_nodata"];
     _circelView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _circelView.autoScrollTimeInterval = 2.0;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        _circelView.localizationImageNamesGroup = imageArray;
-    });
+    if (isTestWeb) {
+        //加载网络图片
+        NSString *webImageUrl = @"http://shoujibbs.2345.cn/m/images/shouji_banner2.png";
+        _circelView.delegate = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            _circelView.imageURLStringsGroup = @[webImageUrl,webImageUrl,webImageUrl,webImageUrl];
+        });
+    }
+    else {
+        //加载本地图片
+        _circelArray = @[@"image0", @"image1", @"image2", @"image3"];
+        
+        NSMutableArray *imageArray = [NSMutableArray new];
+        for (NSString *imageName in _circelArray) {
+            NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"jpg"];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+            [imageArray addObject:image];
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            _circelView.localizationImageNamesGroup = imageArray;
+        });
+    }
     [self.view addSubview:_circelView];
 }
 
@@ -90,7 +104,17 @@
     return imageView;
 }
 
+#pragma mark - SDCycleDelegate
 
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    NSLog(@"didSelectItemAtIndex-%ld",index);
+}
+
+/** 图片滚动回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+    NSLog(@"didScrollToIndex-%ld",index);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
