@@ -10,3 +10,5 @@ Easy\Simple Carsousel
 3、实现代理：numberOfItemsInScrollMenu ／ VCForItemAtIndex：返回每一页的Controller对象
 
 demo中有详细设置
+
+ ![](https://github.com/kldxcr/CHCarousel/CHCarouselShow.mov)
