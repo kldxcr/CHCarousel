@@ -1,5 +1,7 @@
 # CHCarousel
 Easy\Simple Carsousel
+ 
+ ![](https://github.com/kldxcr/CHCarousel/raw/master/other/CHCarouselShow.gif)
 
 集成步骤：
 
@@ -10,10 +12,6 @@ Easy\Simple Carsousel
 3、实现代理：numberOfItemsInScrollMenu ／ VCForItemAtIndex：返回每一页的Controller对象
 
 demo中有详细设置
-
-增加gif图方法：
-
- https://github.com/ 你的用户名 / 你的项目名 / raw / 分支名 / 存放图片的文件夹 / 该文件夹下的图片
  
- ![](https://github.com/kldxcr/CHCarousel/raw/master/other/CHCarouselShow.gif)
+（增加gif图方法：参考http://blog.csdn.net/kaitiren/article/details/38513715）
 
