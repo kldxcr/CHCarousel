@@ -25,10 +25,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     //展示轮播图
-    [self showRepeatScrollView];
+//    [self showRepeatScrollView];
     
     //展示有菜单的多页面滚动试图
-//    [self showScrollMenuController];
+    [self showScrollMenuController];
+    
+    //测试计算显示小数点后三位
+//    [self test:@222.202];
+}
+
+- (void)test:(NSNumber *)number {
+    NSLog(@"%@",[self getLimitStringWithString:@"123.12312"]);
+}
+
+- (NSString *)getLimitStringWithString:(NSString *)string {
+    NSString *newString = [NSString stringWithFormat:@"%.3f",string.doubleValue];
+    while ([[newString substringFromIndex:newString.length - 1] isEqualToString:@"0"] || [[newString substringFromIndex:newString.length - 1] isEqualToString:@"."]) {
+        newString = [newString substringToIndex:newString.length - 1];
+    }
+    return newString;
 }
 
 - (void)showRepeatScrollView {
@@ -65,12 +80,12 @@
 }
 
 - (void)showScrollMenuController {
+    //第一步：所有标题的数组
     _menuTitleArray = @[@"abc", @"123", @"新闻", @"网易", @"2345", @"王健林王思聪", @"1", @"哈哈哈哈哈哈哈哈哈😄", @"abc", @"123", @"新闻", @"网易", @"2345", @"王健林王思聪", @"1", @"哈哈哈哈哈哈哈哈哈😄"];
-    
+    //第二步：初始化：提供所有素材＋初始化位置
     _scrollMenuC = [CHScrollMenuController new];
     _scrollMenuC.view.frame = CGRectMake(0, 100, CH_ScreenWidth, CH_ScreenHeight-100);
     _scrollMenuC.scrollMenuDelegate = self;
-    //setting
     //    _scrollMenuC.firstShowIndex = 2;
     _scrollMenuC.isShowMenuButton = YES;
     _scrollMenuC.showMenuButton_Image_Down = @"forum_btn_unfold";
@@ -79,7 +94,7 @@
     [self.view addSubview:_scrollMenuC.view];
     _scrollMenuC.menuTitleArray = _menuTitleArray;
 }
-
+//第三步：实现数据源代理
 - (NSUInteger)numberOfItemsInScrollMenu {
     return _menuTitleArray.count;
 }
