@@ -23,6 +23,7 @@
 		E237E23E1DBDA0870039FE75 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E237E22E1DBDA0870039FE75 /* UIImageView+HighlightedWebCache.m */; };
 		E237E23F1DBDA0870039FE75 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E237E2301DBDA0870039FE75 /* UIImageView+WebCache.m */; };
 		E237E2401DBDA0870039FE75 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E237E2321DBDA0870039FE75 /* UIView+WebCacheOperation.m */; };
+		E269281D1DD2D90500576567 /* CHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E269281C1DD2D90500576567 /* CHTextField.m */; };
 		E28598401DAF233D00F5DE66 /* CHScrollMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = E285983F1DAF233D00F5DE66 /* CHScrollMenuController.m */; };
 		E285984A1DB0908900F5DE66 /* image0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E28598451DB0908900F5DE66 /* image0.jpg */; };
 		E285984B1DB0908900F5DE66 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E28598461DB0908900F5DE66 /* image1.jpg */; };
@@ -78,6 +79,8 @@
 		E237E2301DBDA0870039FE75 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		E237E2311DBDA0870039FE75 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		E237E2321DBDA0870039FE75 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		E269281B1DD2D90500576567 /* CHTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTextField.h; sourceTree = "<group>"; };
+		E269281C1DD2D90500576567 /* CHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTextField.m; sourceTree = "<group>"; };
 		E285983E1DAF233D00F5DE66 /* CHScrollMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHScrollMenuController.h; sourceTree = "<group>"; };
 		E285983F1DAF233D00F5DE66 /* CHScrollMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHScrollMenuController.m; sourceTree = "<group>"; };
 		E28598451DB0908900F5DE66 /* image0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image0.jpg; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				E2C480151DA9F0FA0092574A /* CHDataMarcos.h */,
 				E2C480161DAA10C50092574A /* CHTableViewController.h */,
 				E2C480171DAA10C50092574A /* CHTableViewController.m */,
+				E269281B1DD2D90500576567 /* CHTextField.h */,
+				E269281C1DD2D90500576567 /* CHTextField.m */,
 			);
 			path = CH_ScrollMenu;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				E2C480181DAA10C50092574A /* CHTableViewController.m in Sources */,
 				E237E2341DBDA0870039FE75 /* SDImageCache.m in Sources */,
 				E237E2331DBDA0870039FE75 /* NSData+ImageContentType.m in Sources */,
+				E269281D1DD2D90500576567 /* CHTextField.m in Sources */,
 				E2C480031DA9EB880092574A /* ViewController.m in Sources */,
 				E237E2361DBDA0870039FE75 /* SDWebImageDecoder.m in Sources */,
 				E2C480001DA9EB880092574A /* AppDelegate.m in Sources */,

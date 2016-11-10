@@ -11,6 +11,7 @@
 #import "CHTableViewController.h"
 #import "CHDataMarcos.h"
 #import "SDCycleScrollView.h"
+#import "CHTextField.h"
 
 @interface ViewController ()<CHScrollMenuDelegate, SDCycleScrollViewDelegate>
 @property (nonatomic, strong) SDCycleScrollView *circelView;
@@ -28,10 +29,20 @@
 //    [self showRepeatScrollView];
     
     //展示有菜单的多页面滚动试图
-    [self showScrollMenuController];
+//    [self showScrollMenuController];
     
     //测试计算显示小数点后三位
 //    [self test:@222.202];
+    
+    //测试UIMenuController 禁用paste方法
+    [self forbidPaste];
+}
+
+- (void)forbidPaste {
+    CHTextField *tf = [[CHTextField alloc] initWithFrame:CGRectMake(20, 50, 300, 50)];
+    tf.backgroundColor = [UIColor blueColor];
+    
+    [self.view addSubview:tf];
 }
 
 - (void)test:(NSNumber *)number {
