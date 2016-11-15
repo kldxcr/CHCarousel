@@ -11,7 +11,5 @@ Easy\Simple Carsousel
 
 3、实现代理：numberOfItemsInScrollMenu ／ VCForItemAtIndex：返回每一页的Controller对象
 
-demo中有详细设置
- 
-（增加gif图方法：参考http://blog.csdn.net/kaitiren/article/details/38513715）
+4、性能处理：页面出现后才加载数据；多页面跳转中间页面不处理；
 
